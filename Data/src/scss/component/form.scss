@@ -1,0 +1,67 @@
+.form {
+  pointer-events: auto;
+  background: #fff;
+  box-shadow: 0 -2px 6px 0 rgba(#000, 0.1);
+
+  display: flex;
+  width: 100%;
+
+  &__mic {
+    height: 56px;
+    flex: 0 0 70px;
+    text-align: center;
+    position: relative;
+
+    &::after {
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: 46px;
+      height: 46px;
+      border-radius: 50px;
+      background: rgba(var(--primary-color), 1) center / contain no-repeat;
+      font-family: "Material Symbols Outlined";
+      content: "\e029";
+      font-size: 36px;
+      color: #fff;
+      line-height: 46px;
+      display: block;
+    }
+    &--off {
+      &::after {
+        content: "\e02b";
+      }
+    }
+  }
+
+  &__input {
+    all: initial;
+    flex: 1 1 auto;
+    background: #fff;
+    color: inherit;
+    padding: 2px 8px;
+    border-radius: 6px 0 0 6px;
+    font-size: 20px;
+  }
+
+  &__submit {
+    background: rgba(var(--primary-color), 1) left top / contain no-repeat;
+    height: 56px;
+    clip-path: path(
+      "M.301 58H96V0H58.969C32.756 0 43.574 58 .3 58Z"
+    ); // TODO error
+    flex: 0 0 96px;
+    text-align: center;
+    padding-left: 40px;
+    margin-left: -40px;
+
+    &::after {
+      font-family: "Material Symbols Outlined";
+      content: "\e941";
+      font-size: 42px;
+      color: #fff;
+      line-height: 1;
+      display: block;
+    }
+  }
+}

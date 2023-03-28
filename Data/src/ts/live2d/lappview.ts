@@ -5,16 +5,16 @@
  * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
-import { CubismMatrix44 } from '@framework/math/cubismmatrix44';
-import { CubismViewMatrix } from '@framework/math/cubismviewmatrix';
+import { CubismMatrix44 } from "@framework/math/cubismmatrix44";
+import { CubismViewMatrix } from "@framework/math/cubismviewmatrix";
 
-import * as LAppDefine from './lappdefine';
-import { canvas, gl, LAppDelegate } from './lappdelegate';
-import { LAppLive2DManager } from './lapplive2dmanager';
-import { LAppPal } from './lapppal';
-import { LAppSprite } from './lappsprite';
-import { TextureInfo } from './lapptexturemanager';
-import { TouchManager } from './touchmanager';
+import * as LAppDefine from "./lappdefine";
+import { canvas, gl, LAppDelegate } from "./lappdelegate";
+import { LAppLive2DManager } from "./lapplive2dmanager";
+import { LAppPal } from "./lapppal";
+import { LAppSprite } from "./lappsprite";
+import { TextureInfo } from "./lapptexturemanager";
+import { TouchManager } from "./touchmanager";
 
 /**
  * 描画クラス。
@@ -126,7 +126,7 @@ export class LAppView {
     const textureManager = LAppDelegate.getInstance().getTextureManager();
     const resourcesPath = LAppDefine.ResourcesPath;
 
-    let imageName = '';
+    let imageName = "";
 
     // 背景画像初期化
     imageName = LAppDefine.BackImageName;
@@ -219,11 +219,6 @@ export class LAppView {
         LAppPal.printMessage(`[APP]touchesEnded x: ${x} y: ${y}`);
       }
       live2DManager.onTap(x, y);
-
-      // 歯車にタップしたか
-      if (this._gear.isHit(pointX, pointY)) {
-        live2DManager.nextScene();
-      }
     }
   }
 

@@ -1,31 +1,42 @@
-import React, { useState } from "react";
-import "./scss/index.scss";
-import { chatgpt } from "./ts/chatgpt/chatgpt";
-import { speechOutput } from "./ts/chatgpt/speechSynthesis";
+import React, { useState, FC } from "react";
+import "./scss/page/index.scss";
+import { marked } from "marked";
+import parse from "html-react-parser";
+import Form from "./component/form";
 
-function App() {
-  const [text, setText] = useState("");
+const App: FC = ({}) => {
   const [chat, setChat] = useState([{ role: "", content: "" }]);
 
   return (
-    <div className="wrapper">
-      <div className="chat">
+    <div className="index">
+      {/*<span className="material-symbols-outlined">settings</span>*/}
+      {/*<span className="material-symbols-outlined">tune</span>*/}
+      {/*<span className="material-symbols-outlined">close</span>*/}
+      {/*<span className="material-symbols-outlined">cancel</span>*/}
+      {/*<span className="material-symbols-outlined">send</span>*/}
+      {/*<span className="material-symbols-outlined">sync</span>*/}
+      {/*<span className="material-symbols-outlined">history</span>*/}
+      {/*<span className="material-symbols-outlined">*/}
+      {/*  keyboard_double_arrow_right*/}
+      {/*</span>*/}
+      {/*<span className="material-symbols-outlined">chat</span>*/}
+      {/*<span className="material-symbols-outlined">forum</span>*/}
+      <div className="index__chat">
         {(() => {
           if (chat[0].role) {
             return (
-              <ol className="chat__list">
+              <ol className="index__chat__list">
                 {chat.map((obj, index) => {
-                  console.log(obj);
                   return (
                     <li
                       className={
                         obj.role === "user"
-                          ? "chat__list__user"
-                          : "chat__list__assistant"
+                          ? "index__chat__list__balloon index__chat__list__balloon--user"
+                          : "index__chat__list__balloon index__chat__list__balloon--assistant"
                       }
-                      key={obj.content + "" + index}
+                      key={obj.role + "_" + index}
                     >
-                      {obj.content}
+                      {parse(marked.parse(obj.content))}
                     </li>
                   );
                 })}
@@ -34,38 +45,11 @@ function App() {
           }
         })()}
       </div>
-      <label className="form">
-        <input
-          className="form__input"
-          onChange={(event) => {
-            setText(event.target.value);
-          }}
-          value={text}
-        />
-        <button
-          className="form__submit"
-          onClick={() => {
-            const chatData =
-              chat.length === 1
-                ? [{ role: "user", content: text }]
-                : [...chat, { role: "user", content: text }];
-            setChat(chatData);
-            chatgpt(chatData.slice(-5))
-              .then((value) => {
-                setChat([...chatData, { role: "assistant", content: value }]);
-                speechOutput(value);
-              })
-              .catch((error) => {
-                console.log(error);
-              });
-            setText("");
-          }}
-        >
-          送信
-        </button>
-      </label>
+      <div className="index__form">
+        <Form chat={chat} setChat={setChat} />
+      </div>
     </div>
   );
-}
+};
 
 export default App;

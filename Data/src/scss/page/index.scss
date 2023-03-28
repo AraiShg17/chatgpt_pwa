@@ -1,0 +1,55 @@
+.index {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  height: 100dvh;
+  z-index: 10;
+  pointer-events: none;
+  display: flex;
+  flex-flow: column nowrap;
+
+  &__chat {
+    flex: 1 1 auto;
+    display: flex;
+    flex-flow: column-reverse nowrap;
+    overflow-y: auto;
+    -webkit-mask-image: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 1) 40%,
+      rgba(0, 0, 0, 0) 60%
+    );
+    mask-image: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 1) 40%,
+      rgba(0, 0, 0, 0) 60%
+    );
+
+    &__list {
+      display: flow-root;
+      &__balloon {
+        clear: both;
+        font-size: 16px;
+        margin: 0px 12px 24px;
+        padding: 8px 16px;
+        border-radius: 8px;
+        &--user {
+          float: right;
+          margin-left: 24px;
+          background: rgba(#fff, 0.7);
+        }
+
+        &--assistant {
+          color: #fff;
+          float: left;
+          margin-right: 24px;
+          background: rgba(var(--primary-color), 0.7);
+        }
+      }
+    }
+  }
+  &__form {
+    flex: 0 0 auto;
+  }
+}

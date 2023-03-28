@@ -10,8 +10,9 @@ import * as LAppDefine from "./ts/live2d/lappdefine";
 import React from "react";
 import ReactDOM from "react-dom";
 import Index from "./index";
-import "./scss/reset.scss";
-import "./scss/base.scss";
+import "./scss/foundation/reset.scss";
+import "./scss/foundation/variable.scss";
+import "./scss/foundation/base.scss";
 
 /**
  * ブラウザロード後の処理
