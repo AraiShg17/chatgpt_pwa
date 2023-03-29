@@ -1,46 +1,35 @@
-# Getting Started with Create React App
+# JP
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### プロジェクトのセットアップ手順
 
-## Available Scripts
+1. Dataディレクトリに移動します。
+2. `npm install` を実行して必要なパッケージをインストールします。
+3. `npm start` を実行して開発サーバーを起動します。
 
-In the project directory, you can run:
+### 本番用データの作成
 
-### `npm start`
+- `npm run build` を実行して、本番用データを作成します。
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 音声API
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- このプロジェクトでは、VOICEVOX API を使用しています。
+- [VOICEVOX公式サイト](https://voicevox.hiroshiba.jp/) からパッケージをダウンロードし、ローカルで起動してください。
+- VOICEVOX が起動していない場合は、標準の読み上げAPIが起動する仕組みとなっています。
 
-### `npm test`
+# EN
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Project Setup Instructions
 
-### `npm run build`
+1. Move to the Data directory.
+2. Run `npm install` to install the necessary packages.
+3. Run `npm start` to launch the development server.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Building Production Data
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Run `npm run build` to create production data.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Voice API
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- This project uses the VOICEVOX API.
+- Download the package from the [VOICEVOX official website](https://voicevox.hiroshiba.jp/) and launch it locally.
+- If VOICEVOX is not running, the standard text-to-speech API will be activated by default.
