@@ -23,7 +23,12 @@ export const speechOutput = (text: string) => {
         .then((response) => response.blob())
         .then((blob) => {
           const audioElement = new Audio(URL.createObjectURL(blob)); // 音声要素を作成
-          audioElement.play(); // 音声を再生
+          audioElement.play().then(() => {
+            sessionStorage.setItem("audioPlaying", String(true));
+          }); // 音声を再生
+          audioElement.addEventListener("ended", (event) => {
+            sessionStorage.setItem("audioPlaying", String(false));
+          });
         })
         .catch((error) => console.error(error));
     })
@@ -36,6 +41,7 @@ export const speechOutput = (text: string) => {
 
 // 音声読み上げをする関数
 function speak(text) {
+  let requestId;
   // Web Speech APIのSpeechSynthesisインスタンスを作成
   const synth = window.speechSynthesis;
 
@@ -46,6 +52,19 @@ function speak(text) {
 
   // 音声を読み上げる
   synth.speak(utterance);
+  console.log(synth.speaking);
+
+  function animate() {
+    if (synth.speaking) {
+      sessionStorage.setItem("audioPlaying", String(true));
+
+      requestId = requestAnimationFrame(animate);
+    } else {
+      sessionStorage.setItem("audioPlaying", String(false));
+      cancelAnimationFrame(requestId);
+    }
+  }
+  requestId = requestAnimationFrame(animate);
 }
 
 export const speechInput = (text: string) => {};

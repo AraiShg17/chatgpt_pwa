@@ -1,7 +1,7 @@
 const { Configuration, OpenAIApi } = require("openai");
 
 const configuration = new Configuration({
-  apiKey: "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",
+  apiKey: "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",
 });
 const openai = new OpenAIApi(configuration);
 type chatType = { role: string; content: string };
