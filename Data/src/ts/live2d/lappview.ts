@@ -136,8 +136,8 @@ export class LAppView {
       const x: number = width * 0.5;
       const y: number = height * 0.5;
 
-      const fwidth = textureInfo.width * 2.0;
-      const fheight = height * 0.95;
+      const fwidth = window.innerWidth; //textureInfo.width * 2.0;
+      const fheight = window.innerHeight; //height * 0.95;
       this._back = new LAppSprite(x, y, fwidth, fheight, textureInfo.id);
     };
 

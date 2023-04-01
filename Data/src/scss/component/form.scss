@@ -36,12 +36,13 @@
 
   &__input {
     all: initial;
-    flex: 1 1 auto;
+    min-width: 0;
+    flex: 1 1 100px;
     background: #fff;
     color: inherit;
     padding: 2px 8px;
     border-radius: 6px 0 0 6px;
-    font-size: 20px;
+    font-size: 18px;
   }
 
   &__submit {

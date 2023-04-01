@@ -9,18 +9,6 @@ const App: FC = ({}) => {
 
   return (
     <div className="index">
-      {/*<span className="material-symbols-outlined">settings</span>*/}
-      {/*<span className="material-symbols-outlined">tune</span>*/}
-      {/*<span className="material-symbols-outlined">close</span>*/}
-      {/*<span className="material-symbols-outlined">cancel</span>*/}
-      {/*<span className="material-symbols-outlined">send</span>*/}
-      {/*<span className="material-symbols-outlined">sync</span>*/}
-      {/*<span className="material-symbols-outlined">history</span>*/}
-      {/*<span className="material-symbols-outlined">*/}
-      {/*  keyboard_double_arrow_right*/}
-      {/*</span>*/}
-      {/*<span className="material-symbols-outlined">chat</span>*/}
-      {/*<span className="material-symbols-outlined">forum</span>*/}
       <div className="index__chat">
         {(() => {
           if (chat[0].role) {
