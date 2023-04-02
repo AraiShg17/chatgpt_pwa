@@ -1,13 +1,29 @@
 import React, { useState, FC, useEffect } from "react";
 import "../scss/component/form.scss";
 import { chatgpt } from "../ts/chat/chatgpt";
-import { speechOutput } from "../ts/chat/speechSynthesis";
+import { speechOutput, speechInput } from "../ts/chat/speechSynthesis";
+const { speechInputResult, speechInputKeyUp, speechInputKeyDown } =
+  speechInput();
 
 const Form: FC = ({ chat, setChat }) => {
   const [text, setText] = useState("");
+  speechInputResult((transcript) => {
+    console.log("音声認識の結果:", transcript);
+    setText(transcript);
+  });
+  speechInputKeyDown(() => {
+    console.log("keyDown");
+  });
+  speechInputKeyUp(() => {
+    console.log("keyUp");
+    handleSubmit();
+  });
 
   /** ボタン押下orEnterで呼ばれる */
   const handleSubmit = () => {
+    if (!Boolean(text.trim())) {
+      return;
+    }
     const chatData =
       chat.length === 1
         ? [{ role: "user", content: text }]

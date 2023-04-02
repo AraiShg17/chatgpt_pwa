@@ -67,4 +67,62 @@ function speak(text) {
   requestId = requestAnimationFrame(animate);
 }
 
-export const speechInput = (text: string) => {};
+export const speechInput = () => {
+  const SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
+  const recognition = new SpeechRecognition();
+
+  recognition.lang = "ja-JP";
+  recognition.continuous = true;
+  recognition.interimResults = true;
+
+  let recognitionStarted = false;
+
+  const speechInputKeyDown = (callback: () => void) => {
+    document.addEventListener("keydown", (event) => {
+      if (!(event.keyCode === 32 && event.shiftKey) || recognitionStarted) {
+        return;
+      }
+      event.preventDefault();
+      recognitionStarted = true;
+      recognition.start();
+      callback();
+    });
+  };
+
+  let onKeyUpCallback: () => void = () => {};
+  document.addEventListener("keyup", (event) => {
+    if (!(event.keyCode === 32 && event.shiftKey)) {
+      return;
+    }
+    event.preventDefault();
+    recognitionStarted = false;
+    recognition.stop();
+    onKeyUpCallback();
+  });
+  const speechInputKeyUp = (callback: () => void) => {
+    onKeyUpCallback = callback;
+  };
+
+  recognition.addEventListener("end", () => {
+    if (!recognitionStarted) {
+      console.log("音声認識が終了しました。");
+    }
+  });
+
+  const speechInputResult = (callback: (transcript: string) => void) => {
+    recognition.addEventListener("result", (event) => {
+      if (!recognitionStarted) {
+        return;
+      }
+      let transcript = "";
+
+      for (let i = event.resultIndex; i < event.results.length; ++i) {
+        transcript += event.results[i][0].transcript;
+      }
+
+      callback(transcript);
+    });
+  };
+  return { speechInputResult, speechInputKeyUp, speechInputKeyDown };
+};
